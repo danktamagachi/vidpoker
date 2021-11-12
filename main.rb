@@ -6,9 +6,10 @@ require './hand'
 require './rank'
 require './suit'
 
-puts "\e[H\e[2J"
-while 1 == 1
-	g = Game.new
+puts "\e[H\e[2J" # Clear screen via ANSI sequence
+
+while 1 == 1 # Main Loop
+	g = Game.new # Create Game
 	
 	# First Round of Dealing
 	g.deal_first_round
@@ -22,7 +23,7 @@ while 1 == 1
 	saved = gets.chomp.split().map { |e| e.to_i  }
 	saved.count > 5 ? saved = [0,1,2,3,4]  : saved
 	
-	#Second Round of Dealing
+	# Second Round of Dealing
 	g.deal_second_round(saved)
 	puts "Second Hand Dealt"
 	g.hand.hand.each_with_index do |card,idx|
@@ -37,6 +38,6 @@ while 1 == 1
 	puts "\n\n\n\n\n\n\n\n"
 	puts "Press Enter to Continue"
 	gets
-	puts "\e[H\e[2J"
+	puts "\e[H\e[2J" # Clear screen via ANSI sequence
 	g = nil
 end
