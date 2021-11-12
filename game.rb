@@ -8,10 +8,6 @@ class Game
 
 	def deal_first_round
 		@hand.hand = @dealer.deal(5)
-		puts "First Hand Dealt"
-		@hand.hand.each_with_index do |card,idx|
-			puts "Card #{idx}: #{card.to_s}"
-		end
 	end
 	
 
@@ -32,12 +28,6 @@ class Game
 		end
 
 		@hand.hand = temp_hand
-
-		puts "Second Hand Dealt"
-		@hand.hand.each_with_index do |card,idx|
-			puts "Card #{idx}: #{card.to_s}"
-		end
-	
 	end
 
 
