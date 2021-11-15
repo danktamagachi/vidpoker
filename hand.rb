@@ -69,5 +69,22 @@ class Hand
 		else
 			0
 		end
-	end	
+	end
+
+	def is_pair_good
+		counts = Hash.new 0
+		@hand.each do |card|
+			counts[card.rank.rank] +=1
+		end
+		pr = counts.select{|key,value| value == 2 }
+		if [:jack, :queen, :king, :ace].include? pr.first[0] 
+			true
+		else
+			false
+		end
+
+	end
+
+
+
 end

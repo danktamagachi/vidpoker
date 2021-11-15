@@ -39,7 +39,6 @@ class Game
 		is_full_house = @hand.is_full_house
 		is_straight = @hand.is_straight
 
-
 		#puts "Number of Pairs: #{@hand.num_pairs}"
 		#puts "Number of 3 of a Kind: #{@hand.num_three_k}"
 		#puts "Number of 4 of a Kind: #{@hand.num_four_k}"
@@ -63,10 +62,12 @@ class Game
 			puts "Winner - 3 of a Kind"
 		elsif (num_pairs == 2)
 			puts "Winner - 2 Pair"
-		elsif (num_pairs == 1)
-			puts "Winner - 1 Pair"
-		else
-			Puts "Winner - Unknown?!?"
+		elsif (num_pairs == 1 )
+			if @hand.is_pair_good == true 
+				puts "Winner - 1 Pair - Jacks or Better"
+			else
+				puts "No Winner"
+			end
 		end
 	end
 end
