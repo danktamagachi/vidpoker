@@ -31,6 +31,7 @@ while 1 == 1 # Main Loop
 	end
 
 	# Check Winner
+
 	g.check_winner
 
 	#Reset for Next Game

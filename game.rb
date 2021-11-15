@@ -26,7 +26,6 @@ class Game
 		else
 			temp_hand = @dealer.deal(5)
 		end
-
 		@hand.hand = temp_hand
 	end
 
@@ -38,6 +37,7 @@ class Game
 		is_flush = @hand.is_flush
 		is_full_house = @hand.is_full_house
 		is_straight = @hand.is_straight
+		is_royal_straight = @hand.is_royal_straight
 
 		#puts "Number of Pairs: #{@hand.num_pairs}"
 		#puts "Number of 3 of a Kind: #{@hand.num_three_k}"
@@ -46,10 +46,14 @@ class Game
 		#puts "Is full house: #{@hand.is_full_house}"
 		#puts "Is straight: #{@hand.is_straight}"
 
-		if(num_pairs == 0 && num_three_k == 0 and num_four_k == 0 && is_flush == 0 && is_full_house == 0)
+		if(num_pairs == 0 && num_three_k == 0 and num_four_k == 0 && is_flush == 0 && is_full_house == 0 && is_straight ==0)
 			puts "No winner"
 		elsif (is_straight == 1 && is_flush == 1)
-			puts "Winner - Straight Flush"
+			if (is_royal_straight)
+				puts "Winner - Royal Flush!!!!"
+			else
+				puts 'Winner - Straight Flush'
+			end
 		elsif (num_four_k == 1)
 			puts "Winner - 4 of a Kind"
 		elsif (num_pairs == 1 and num_three_k == 1 )

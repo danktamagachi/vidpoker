@@ -64,7 +64,8 @@ class Hand
 		@hand.each do |card|
 			arr << Rank::RANKS[card.rank.rank]
 		end
-		if check_sum_match?(arr)
+
+		if check_sum_match?(arr) || arr.sort == [1,10,11,12,13].sort
 			1
 		else
 			0
@@ -82,9 +83,18 @@ class Hand
 		else
 			false
 		end
-
 	end
 
+	def is_royal_straight
+		arr = []
+		@hand.each do |card|
+			arr << Rank::RANKS[card.rank.rank]
+		end
 
-
+		if arr.sort == [1,10,11,12,13].sort
+			true
+		else
+			false
+		end
+	end
 end
