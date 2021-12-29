@@ -1,5 +1,5 @@
 class Game
-	attr_accessor :game, :dealer, :hand
+	attr_accessor :dealer, :hand
 	
 	def initialize
 		@dealer = Dealer.new
