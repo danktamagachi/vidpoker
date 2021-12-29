@@ -1,4 +1,4 @@
-class Session
+class Sesh
 	attr_accessor :pot
 
 	def initialize(**args)

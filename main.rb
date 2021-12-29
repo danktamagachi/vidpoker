@@ -10,7 +10,7 @@ require './session'
 puts "\e[H\e[2J" # Clear screen via ANSI sequence
 
 # Init key variables
-s = Session.new(:pot=>1000)
+s = Sesh.new(:pot=>1000)
 extra_ct = 0
 bet_per_hand = 0
 
