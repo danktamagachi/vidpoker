@@ -1,29 +1,109 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>    
-    tailwind.config = {
-      theme: {        
-        extend: {          
-          colors: {            
-            clifford: '#da373d',          
-          }        
-        }      
-      }    
-    }  
-  </script>
+  
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+ 
   <style>
-    a {
-      @apply underline
+    .cd.selected {
+      color: red;
+    }
+
+    span.hand0 {
+      color:  red;
+    }
+
+    span.hand1 {
+      color:  green;
     }
   </style>
 </head>
+
+
+
+
 <body>
-  <p>
-    <%= resp %>
-  </p>
+  <div>
+    <span>Current Pot: $<%= sesh.pot.to_s %></span><br>
+    <% if round == 0 %>
+      <form action="/first-round">
+        <label>Number of Extra Hands: <input name="extra_ct" type="text" value="0"/></label><br>
+        <label>Bet per Hand: <input name="bet_per_hand" type="text" value="1"/></label><br>
+        <input type="submit" value="Play"/>
+      </form>
+
+
+    <% elsif round == 1 %>
+      <span class="round">
+        <span class="hand">
+          Game 1: <br>
+          <% current_game.hand.hand.each_with_index do |card,idx| %>
+            <span class="cd" id="card-<%= idx %>" data-idx="<%= idx %>">Card <%= idx + 1 %>: <%= card.to_s %></span><br>
+          <% end %>
+        </span>
+      </span>
+      <br>
+      <a href="/second-round" id="sec_rd">Deal Second Round</a>
+    <% elsif round == 2 %>
+      <span class="round">
+        <span class="hand<%= current_game.hand.is_winner %>">
+        <% puts 'Game 1'  + '  ' + current_game.hand.inspect %>
+        Game 1: <%= current_game.hand.win_string %><br>
+        <% current_game.hand.hand.each_with_index do |card,idx| %>
+          <span class="cd" id="card-<%= idx %>" data-idx="<%= idx %>">Card <%= idx + 1 %>: <%= card.to_s %></span><br>
+        <% end %>
+        <br>
+        </span>
+
+        <% current_game.extra_games.each_with_index do |game,g_idx| %>
+          <% puts 'Game ' + (g_idx + 2).to_s + '  ' + game.hand.inspect %>
+          <span class="hand<%= game.hand.is_winner %>">
+          Game <%= g_idx + 2 %>: <%= game.hand.win_string %><br>
+          <% game.hand.hand.each_with_index do |card,c_idx| %>
+            <span class="cd" id="card-<%= c_idx %>" data-idx="<%= c_idx %>">Card <%= c_idx + 1 %>: <%= card.to_s %></span><br>
+          <% end %>
+          </span><br>
+        <% end %>
+        <br>
+        Ending Pot: $<%= sesh.pot.to_s %>
+        <br><a href="/first-round">New Hand</a>
+        <br><a href="/start">Start Over</a>
+
+      </span>
+    <% end %>
+
+
+  </div>
+ <script type="text/javascript">
+    $('.cd').click(function() {
+      $(this).toggleClass("selected");
+      calc_list();
+    });
+
+    function calc_list() {
+      arr=[];
+      p = "";
+      
+      $('.selected').each(function(idx) {
+        arr.push($(this).data("idx"));
+      });
+      
+      p = JSON.stringify(arr);
+
+      $('#sec_rd').attr('href', "/second-round?held=" + p);
+      
+      return arr;
+    }
+
+
+
+  </script>
 </body>
 </html>
