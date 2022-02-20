@@ -30,6 +30,11 @@
       border:  1px solid black;
       width: 24%;
     }
+
+    div.win_summary {
+      border:  1px solid black;
+
+    }
   </style>
 </head>
 
@@ -62,7 +67,7 @@
 
   <div style="margin-left:2px;" class="font-weight-light">
     <% if round == 0 %>
-<br>
+      <br>
       <form action="/first-round">
         <div class="form-group">
           <label for="extra_ct">Number of Extra Hands: </label><input id="extra_ct" name="extra_ct" type="text" value="99"/>
@@ -83,6 +88,11 @@
       <a href="/second-round" id="sec_rd">Deal Second Round</a>
     
     <% elsif round == 2 %>
+      <div class="win_summary">
+        <span>Number of Winning Hands: <span id="numw">0</span></span><br>
+        <span>Number of Losing Hands: <span id="numl">0</span></span>
+      </div>
+
       <span class="round">
         <%= erb :_hand, :locals => {:cur_hand => current_game.hand, :game_id => 1, :is_winner => current_game.hand.is_winner, :win_string => current_game.hand.win_string } %>
 
@@ -120,9 +130,15 @@
       
       return arr;
     }
-
-
-
   </script>
+
+  <script type="text/javascript">
+      num_win = $('.hand1').length;
+      num_los = $('.hand0').length;
+      $('#numw').text(num_win);
+      $('#numl').text(num_los);
+  </script>
+
+
 </body>
 </html>
