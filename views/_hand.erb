@@ -1,1 +1,6 @@
-<%= @game.print_hand_web %>
+<span class="hand hand<%= is_winner %>">
+	Game <%= game_id %>: <%= win_string %><br>
+    <% cur_hand.hand.each_with_index do |card,idx| %>
+    	<%= erb :_card, :locals => {:idx => idx, :card => card} %>
+    <% end %>
+</span>

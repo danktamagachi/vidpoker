@@ -1,4 +1,5 @@
 class Hand
+	#TODO: Rename :hand to :cards
 	attr_accessor :hand, :is_winner, :win_string, :payout_mult
 
 	def initialize
@@ -82,8 +83,7 @@ class Hand
 		end
 		# TODO: FIX ACE PAIRS
 		pr = counts.select{|key,value| value == 2 }
-		puts counts
-		puts pr
+
 		if [:jack, :queen, :king, :ace].include? pr.first[0] 
 			true
 		else
@@ -163,9 +163,6 @@ class Hand
 				end
 
 		end
-
-		puts win_string
 		return payout_mult
-
 	end
 end

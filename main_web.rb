@@ -10,7 +10,7 @@ require './session'
 require 'sinatra'
 require 'json'
 
- #enable :sessions
+#enable :sessions
 use Rack::Session::Pool
 
 get '/start' do 

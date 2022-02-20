@@ -9,8 +9,9 @@ class Game
 	end
 
 	def create_extra_games
+		orig=Marshal.dump(self)
 		@extra_games_ct.times do |i|
-			@extra_games << Marshal.load(Marshal.dump(self))
+			@extra_games << Marshal.load(orig)
 		end
 	end
 
