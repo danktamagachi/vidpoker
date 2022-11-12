@@ -132,12 +132,16 @@
     }
   </script>
 
+  <% if round == 2 %>
   <script type="text/javascript">
+      $(function() {
       num_win = $('.hand1').length;
       num_los = $('.hand0').length;
       $('#numw').text(num_win);
       $('#numl').text(num_los);
+    });
   </script>
+  <% end %>
 
 
 </body>
