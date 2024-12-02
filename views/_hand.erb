@@ -1,6 +1,14 @@
 <span class="hand hand<%= is_winner %>">
+<<<<<<< HEAD
 	Game <%= game_id %>: <%= win_string %><br>
     <% cur_hand.hand.each_with_index do |card,idx| %>
     	<%= erb :_card, :locals => {:idx => idx, :card => card} %>
     <% end %>
 </span>
+=======
+	Game <%= game_id %>: <%= win_string %> <% if payout_mult !="" %> $<% end %><span class="win_amt"><%= payout_mult %></span><br>
+    <% cur_hand.hand.each_with_index do |card,idx| %>
+    	<%= erb :_card, :locals => {:idx => idx, :card => card} %>
+    <% end %>
+</span>
+>>>>>>> 1ab8b7d (Fixed bugs and added winnings count)

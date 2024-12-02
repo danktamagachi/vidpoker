@@ -69,7 +69,14 @@ class Hand
 			arr << Rank::RANKS[card.rank.rank]
 		end
 
+<<<<<<< HEAD
 		if check_sum_match?(arr) || arr.sort == [1,10,11,12,13].sort
+=======
+		#I think this fixed the "calls a straight with dupes and the right high/low cards" but should continue to test
+		if (check_sum_match?(arr) && arr.uniq.length == arr.length) || arr.sort == [1,10,11,12,13].sort
+			puts arr.uniq.length
+			puts arr.length
+>>>>>>> 1ab8b7d (Fixed bugs and added winnings count)
 			1
 		else
 			0
@@ -113,7 +120,11 @@ class Hand
 		is_straight = self.is_straight
 		is_royal_straight = self.is_royal_straight?
 
+<<<<<<< HEAD
 		if(num_pairs == 0 && num_three_k == 0 and num_four_k == 0 && is_flush == 0 && is_full_house == 0 && is_straight ==0)
+=======
+		if(num_pairs == 0 && num_three_k == 0 and num_four_k == 0 && is_flush == 0 && is_full_house == 0 && is_straight == 0)
+>>>>>>> 1ab8b7d (Fixed bugs and added winnings count)
 				@win_string = "No winner"
 				@payout_mult = 0
 				@is_winner = 0

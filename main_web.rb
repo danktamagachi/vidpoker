@@ -24,7 +24,11 @@ end
 get '/first-round' do 
 	session[:current_game] = nil
 	session[:extra_ct]=params[:extra_ct].to_i if params[:extra_ct]
+<<<<<<< HEAD
 	session[:bet_per_hand]=params[:bet_per_hand].to_i if params[:bet_per_hand]	
+=======
+	session[:bet_per_hand]=params[:bet_per_hand].to_i if params[:bet_per_hand]
+>>>>>>> 1ab8b7d (Fixed bugs and added winnings count)
 
 	session[:current_game] = Game.new(:extra_games_ct => session[:extra_ct])
 	

@@ -82,7 +82,11 @@
 
     <% elsif round == 1 %>
       <span class="round">
+<<<<<<< HEAD
         <%= erb :_hand, :locals => {:cur_hand => current_game.hand, :game_id => 1, :is_winner => "", :win_string => ""} %>
+=======
+        <%= erb :_hand, :locals => {:cur_hand => current_game.hand, :game_id => 1, :is_winner => "", :win_string => "", :payout_mult => ""} %>
+>>>>>>> 1ab8b7d (Fixed bugs and added winnings count)
       </span>
       <br>
       <a href="/second-round" id="sec_rd">Deal Second Round</a>
@@ -94,10 +98,17 @@
       </div>
 
       <span class="round">
+<<<<<<< HEAD
         <%= erb :_hand, :locals => {:cur_hand => current_game.hand, :game_id => 1, :is_winner => current_game.hand.is_winner, :win_string => current_game.hand.win_string } %>
 
         <% current_game.extra_games.each_with_index do |game,g_idx| %>
           <%= erb :_hand, :locals => {:cur_hand => game.hand, :game_id => g_idx + 2, :is_winner => game.hand.is_winner, :win_string => game.hand.win_string } %>
+=======
+        <%= erb :_hand, :locals => {:cur_hand => current_game.hand, :game_id => 1, :is_winner => current_game.hand.is_winner, :win_string => current_game.hand.win_string, :payout_mult=>current_game.hand.payout_mult } %>
+
+        <% current_game.extra_games.each_with_index do |game,g_idx| %>
+          <%= erb :_hand, :locals => {:cur_hand => game.hand, :game_id => g_idx + 2, :is_winner => game.hand.is_winner, :win_string => game.hand.win_string, :payout_mult => game.hand.payout_mult } %>
+>>>>>>> 1ab8b7d (Fixed bugs and added winnings count)
         <% end %>
         <br>
       </span>
@@ -139,10 +150,24 @@
       num_los = $('.hand0').length;
       $('#numw').text(num_win);
       $('#numl').text(num_los);
+<<<<<<< HEAD
+=======
+
+      winnings = 0;
+      $(".win_amt").each(function() {
+        winnings = winnings + parseInt($(this).text())||0;
+
+      });
+      $('#numw').text($('#numw').text() + " Total Winnings: $" + winnings);
+>>>>>>> 1ab8b7d (Fixed bugs and added winnings count)
     });
   </script>
   <% end %>
 
 
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 1ab8b7d (Fixed bugs and added winnings count)
